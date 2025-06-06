@@ -19,7 +19,6 @@ from anyio import ClosedResourceError
 import urllib.parse
 import base64
 import subprocess
-from langchain_groq import ChatGroq
 
 
 # Setup logging
@@ -31,7 +30,7 @@ load_dotenv()
 
 base_url = "http://localhost:5555/devmode/exampleApplication/privkey/session1/sse"
 params = {
-    "waitForAgents": 7,
+    "waitForAgents": 1,
     "agentId": "repo_doc_consistency_checker_agent",
     "agentDescription": """I am `repo_doc_consistency_checker_agent`, responsible for evaluating whether the documentation (such as README, API docs, and configuration guides) in a specified GitHub repository and branch is up-to-date with respect to the **changes introduced in a given commit**. 
                            To proceed, you need to provide me with the `repo_name` (not local path), the `branch_name` (not PR number), and the changes introduced in a given commit"""
