@@ -124,44 +124,53 @@ uv run 6-langchain-RepoDocConsistencyCheckerAgent.py
 
 <details>
 
-Repo doc consistency checker agent is supposed to take target changed file as input, sp please also run [Code diffs review agent](https://github.com/Coral-Protocol/Coral-CodeDiffReview-Agent) to get proper input.
-
 Input:
 
+Send the message to the interface agent:
+
 ```bash
-#Send the message to the interface agent:
-I created a new branch 'repo-understanding+unit-test-advice' in the repo 'renxinxing123/software-testing-agents-test' and opened a new PR (#2), could you please help me check if the relevant doc covered all the changes from the PR?
+Could you please help me check if the doc in the branch 'repo-understanding+unit-test-advice' of the repo 'renxinxing123/software-testing-agents-test' covered all changes from the updated file '4-langchain-RepoUnderstandingAgent.py' and '5-langchain-RepoUnitTestAdvisorAgent.py'.
 ```
 
 Output:
 
 ```bash
-**Documentation Consistency Check for PR #2 (branch: 'repo-understanding+unit-test-advice')**
+**Documentation Consistency Analysis for Updated Files:**
 
-### Changed Files:
-1. `4-langchain-RepoUnderstandingAgent.py` (new)
-2. `5-langchain-RepoUnitTestAdvisorAgent.py` (new)
+**Changed Files:**
+- 4-langchain-RepoUnderstandingAgent.py
+- 5-langchain-RepoUnitTestAdvisorAgent.py
 
-### Documentation Coverage:
-- The main documentation file is `README.md`.
-- The README describes the overall architecture, agent roles, and usage instructions for the system, including launching agents and running unit tests for PRs.
-- However, the README **does not mention or document the two new agents**:
-    - `RepoUnderstandingAgent` (4-langchain-RepoUnderstandingAgent.py)
-    - `RepoUnitTestAdvisorAgent` (5-langchain-RepoUnitTestAdvisorAgent.py)
-- There is no section describing their purpose, usage, workflow, or how to launch them.
-- The agent roles listed in the README do not include these two new agents, nor are there updated instructions for launching or interacting with them.
+**Relevant Documentation File Reviewed:**
+- README.md
 
-### Recommendations:
-1. **Update the README.md** to:
-    - Add descriptions for `RepoUnderstandingAgent` and `RepoUnitTestAdvisorAgent`, including their responsibilities and how they fit into the system.
-    - Update the &quot;Overview of Agents&quot; section to include these new agents.
-    - Provide instructions for launching these agents, similar to the other agent scripts.
-    - Optionally, add usage examples or scenarios where these agents are involved.
+---
 
-If you need suggested wording or a draft section for the README, let me know!
+**Analysis:**
+
+Both changed files implement new or updated agents for repository understanding and unit test advising. The README.md provides an overview of the agents, their responsibilities, and usage instructions for the system. It describes the roles of the &quot;RepoUnderstandingAgent&quot; and &quot;RepoUnitTestAdvisorAgent&quot; in the context of the multi-agent workflow, including their purpose and how they interact with the system.
+
+**Findings:**
+- The README.md does mention the existence and purpose of these agents, but it does not provide detailed usage instructions, configuration options, or specific workflow examples for these two agents.
+- There is no section in the README.md that explains how to invoke these agents directly, what input parameters they require, or what output to expect.
+- The agent scripts themselves contain detailed docstrings and workflow comments, but this information is not surfaced in the documentation.
+
+**Recommendations:**
+1. **Add Agent-Specific Sections:**
+   - Add dedicated subsections in the README.md for &quot;RepoUnderstandingAgent&quot; and &quot;RepoUnitTestAdvisorAgent&quot;.
+   - Include a brief description, usage instructions (how to invoke, required arguments), and example input/output for each agent.
+2. **Document Parameters and Workflow:**
+   - Clearly document any environment variables, configuration, or prerequisites specific to these agents.
+   - Provide a sample workflow showing how these agents fit into the overall system (e.g., how to trigger a repository analysis or test coverage evaluation).
+3. **Update Usage Examples:**
+   - If these agents can be invoked independently, add example commands or API calls.
+   - If they are only used as part of the multi-agent workflow, clarify their role and how users interact with them.
 
 **Summary:**
-The documentation is currently **outdated** with respect to the new agents added in this PR. Please update the README.md as described above.
+- The documentation is **partially up-to-date**: the agents are mentioned, but detailed usage and configuration instructions for the updated files are missing.
+- Updating the README.md as recommended will improve clarity and help users leverage the new/updated agent functionalities.
+
+Let me know if you need example documentation text or further breakdowns!
 ```
 </details>
 
