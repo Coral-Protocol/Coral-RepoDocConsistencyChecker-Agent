@@ -120,7 +120,7 @@ uv run 6-langchain-RepoDocConsistencyCheckerAgent.py
 
 </details>
 
-### 3. Example
+### 4. Example
 
 <details>
 
