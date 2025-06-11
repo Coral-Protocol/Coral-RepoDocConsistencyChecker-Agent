@@ -122,9 +122,9 @@ uv run 6-langchain-RepoDocConsistencyCheckerAgent.py
 
 ### 3. Example
 
-Repo doc consistency checker agent is supposed to take target changed file as input, sp please also run [Code diffs review agent](https://github.com/Coral-Protocol/Coral-CodeDiffReview-Agent) to get proper input.
-
 <details>
+
+Repo doc consistency checker agent is supposed to take target changed file as input, sp please also run [Code diffs review agent](https://github.com/Coral-Protocol/Coral-CodeDiffReview-Agent) to get proper input.
 
 Input:
 
