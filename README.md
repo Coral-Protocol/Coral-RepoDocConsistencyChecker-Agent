@@ -110,7 +110,7 @@ Required environment variables:
 
 </details>
   
-## 3. Run Agent
+### 3. Run Agent
 <details>
 
 Run the agent using `uv`:
