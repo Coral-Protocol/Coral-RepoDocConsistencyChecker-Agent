@@ -64,8 +64,7 @@ def get_all_github_files_tool(repo_name: str, branch: str = "main") -> str:
 
     result = subprocess.run(
         [
-            "python",
-            script_path,
+            "uv", "run", script_path,
             "--repo_name", repo_name,
             "--branch", branch
         ],
@@ -98,8 +97,7 @@ def retrieve_github_file_content_tool(repo_name: str, file_path: str, branch: st
 
     result = subprocess.run(
         [
-            "python",
-            script_path,
+            "uv", "run", script_path,
             "--repo_name", repo_name,
             "--file_path", file_path,
             "--branch", branch
