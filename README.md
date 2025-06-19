@@ -1,6 +1,6 @@
 ## [Coral RepoDocConsistencyChecker Agent](https://github.com/Coral-Protocol/Coral-RepoDocConsistencyChecker-Agent)
 
-The RepoDocConsistencyChecker Agent helps you evaluate whether the documentation in a specified GitHub repository and branch is up-to-date with respect to changes in a given list of files.
+The RepoDocConsistencyChecker Agent helps you evaluate whether the documentation in a specified GitHub repository and branch is up-to-date with respect to changes in a given list of files
 
 ## Responsibility
 The RepoDocConsistencyChecker Agent checks if documentation is consistent with recent code changes in a repository and branch, and recommends updates if needed.
