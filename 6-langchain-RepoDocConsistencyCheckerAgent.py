@@ -19,6 +19,7 @@ from anyio import ClosedResourceError
 import urllib.parse
 import base64
 import subprocess
+from langchain_core.messages import HumanMessage, AIMessage
 
 
 # Setup logging
@@ -28,7 +29,7 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-base_url = "http://localhost:5555/devmode/exampleApplication/privkey/session1/sse"
+base_url = os.getenv("CORAL_SERVER_URL")
 params = {
     "waitForAgents": 1,
     "agentId": "repo_doc_consistency_checker_agent",
@@ -74,7 +75,14 @@ def get_all_github_files_tool(repo_name: str, branch: str = "main") -> str:
     if result.returncode == 0:
         return result.stdout
     else:
-        return f"exit_code={result.returncode}\nstderr={result.stderr}"
+        error_message = f"exit_code={result.returncode}\n"
+        if result.stderr.strip():
+            error_message += f"stderr={result.stderr}"
+        else:
+            error_message += "stderr is empty.\n"
+        if result.stdout.strip():
+            error_message += f"stdout={result.stdout}"
+        return error_message
 
 
 
