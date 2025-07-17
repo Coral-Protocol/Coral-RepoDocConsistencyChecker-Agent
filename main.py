@@ -20,20 +20,6 @@ import traceback
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-# Load environment variables
-load_dotenv()
-
-base_url = os.getenv("CORAL_SSE_URL")
-agentID = os.getenv("CORAL_AGENT_ID")
-
-params = {
-    #"waitForAgents": 1,
-    "agentId": agentID,
-    "agentDescription": """An agent responsible for evaluating whether the documentation (such as README, API docs, and configuration guides) in a specified GitHub repository and branch is up-to-date with respect to the **changes introduced in a given commit**. 
-                           To proceed, you need to provide me with the `repo_name` (not local path), the `branch_name` (not PR number), and the changes introduced in a given commit"""
-}
-query_string = urllib.parse.urlencode(params)
-MCP_SERVER_URL = f"{base_url}?{query_string}"
 
 def get_tools_description(tools):
     return "\n".join(f"Tool: {t.name}, Schema: {json.dumps(t.args).replace('{', '{{').replace('}', '}}')}" for t in tools)
@@ -153,6 +139,24 @@ async def create_doc_consistency_checker_agent(client, tools):
     return AgentExecutor(agent=agent, tools=tools, max_iterations=None, handle_parsing_errors = True, verbose=True)
 
 async def main():
+    
+    runtime = os.getenv("CORAL_ORCHESTRATION_RUNTIME", "devmode")
+
+    if runtime == "docker" or runtime == "executable":
+        base_url = os.getenv("CORAL_SSE_URL")
+        agentID = os.getenv("CORAL_AGENT_ID")
+    else:
+        load_dotenv()
+        base_url = os.getenv("CORAL_SSE_URL")
+        agentID = os.getenv("CORAL_AGENT_ID")
+
+    coral_params = {
+        "agentId": agentID,
+        "agentDescription": "An agent that takes the user's input and interacts with other agents to fulfill the request"
+    }
+
+    query_string = urllib.parse.urlencode(coral_params)
+
     CORAL_SERVER_URL = f"{base_url}?{query_string}"
     logger.info(f"Connecting to Coral Server: {CORAL_SERVER_URL}")
 
